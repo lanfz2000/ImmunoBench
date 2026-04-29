@@ -187,25 +187,6 @@ ImmunoBench includes features from multiple pathology foundation models, includi
 - `phikon`, `phikon-v2`
 - `ctranspath`, `gpfm`, `chief`
 
-## Repository Layout
-
-```text
-immune_bench/
-├── train_scripts/      # task-specific training entrypoints
-├── dataset_csv/        # CSV files with labels and feature directories
-├── splits712/          # predefined data splits
-├── datasets/           # dataset loaders
-├── mil_models/         # MIL model implementations
-├── utils/              # helper scripts
-├── main.py             # main training entrypoint
-└── download_features.py
-```
-
-## Support
-
-- Code or training issues: open a GitHub issue
-- Dataset or feature questions: contact the repository maintainers
-
 ## License
 
 This project is released under the license provided with the repository.
