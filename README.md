@@ -73,36 +73,67 @@ Examples:
 ImmunoBench covers six task categories. Users should prepare data and run the corresponding scripts step by step.
 
 1. Immunohistochemical Staining Assessment
+   
    `HPA10M_staining_intensity`
+   
    `dataset_csv/HPA10M_staining_intensity.csv`
+   
    `train_scripts/subtype_HPA10M_staining_intensity.sh`
+   
    `HPA10M_staining_intensity.csv` is not distributed directly in this repository because of file size limits. A download link will be provided here later (for example, Google Drive).
+
 2. Immunohistochemical Biomarker Expression
+   
    `GATA3_pancancer`
+   
    `dataset_csv/GATA3_pancancer_subtyping.csv`
+   
    `train_scripts/subtype_GATA3_pancancer.sh`
+
 3. Disease Diagnosis and Grading
+   
    `HANCOCK_grading`
+   
    `dataset_csv/HANCOCK_grading_subtyping.csv`
+   
    `dataset_csv/HANCOCK_grading_subtyping_HE.csv`
+   
    `dataset_csv/HANCOCK_grading_subtyping_IHC.csv`
+   
    `train_scripts/subtype_HANCOCK_grading.sh`
+   
    `train_scripts/subtype_HANCOCK_grading_HE.sh`
+   
    `train_scripts/subtype_HANCOCK_grading_IHC.sh`
+
 4. Disease Progression and Prognosis
+   
    `DLBCL_Morph`
+   
    `dataset_csv/DLBCL_Morph_survival.csv`
+   
    `train_scripts/survival_DLBCL_Morph.sh`
+
 5. Therapeutic Response and Decision-Making
+   
    `HANCOCK_Chemotherapy_Recurrence`
+   
    `dataset_csv/HANCOCK_Chemotherapy_Recurrence_subtyping.csv`
+   
    `dataset_csv/HANCOCK_Chemotherapy_Recurrence_subtyping_HE.csv`
+   
    `dataset_csv/HANCOCK_Chemotherapy_Recurrence_subtyping_IHC.csv`
+   
    `train_scripts/subtype_HANCOCK_Chemotherapy_Recurrence.sh`
+   
    `train_scripts/subtype_HANCOCK_Chemotherapy_Recurrence_HE.sh`
+   
    `train_scripts/subtype_HANCOCK_Chemotherapy_Recurrence_IHC.sh`
+
 6. Tissue and Tumor Microenvironment Classification
+   
    `HNSCC_mIF_mIHC_CD8`
+   
    `train_scripts/patch_HNSCC_mIF_mIHC_CD8.sh`
 
 For tasks 1 to 5, results are written under `results/experiments/train/splits712/`. For task 6, results are written under `results/experiments/train/patch/`. Logs are written under `logs/`.
@@ -110,13 +141,13 @@ For tasks 1 to 5, results are written under `results/experiments/train/splits712
 ## Training Notes
 
 - Survival tasks use scripts named `survival_*.sh`
-- Recurrence tasks use scripts named `subtype_*.sh`
+- Subtype tasks use scripts named `subtype_*.sh`
 - Most settings can be changed by editing variables at the top of each script
 
 Common customizations:
 
 ```bash
-backbones="virchow virchow2"
+backbones="chief conch conch_v1_5 ctranspath gigapath GPFM phikon uni h_optimus_0 virchow virchow2 chief_wsi titan_wsi gigapath_wsi madeleine_wsi"
 CUDA_VISIBLE_DEVICES=1 bash survival_HANCOCK_Chemotherapy_OS.sh
 ```
 
@@ -132,14 +163,22 @@ Parallel task sets are also provided for Radiotherapy and Surgery cohorts.
 
 ## Available Backbones
 
-ImmunoBench includes features from multiple pathology foundation models, including:
-- `virchow`, `virchow2`
-- `uni`, `uni2-h`
-- `h_optimus_0`, `h_optimus_1`
-- `gigapath`, `gigapath_wsi`
-- `conch`, `conch_v1_5`
-- `phikon`, `phikon-v2`
-- `ctranspath`, `gpfm`, `chief`
+ImmunoBench includes features from the following pathology foundation models:
+- `chief`
+- `chief_wsi`
+- `conch`
+- `conch_v1_5`
+- `ctranspath`
+- `gigapath`
+- `gigapath_wsi`
+- `GPFM`
+- `h_optimus_0`
+- `madeleine_wsi`
+- `phikon`
+- `titan_wsi`
+- `uni`
+- `virchow`
+- `virchow2`
 
 ## License
 
