@@ -151,34 +151,10 @@ backbones="chief conch conch_v1_5 ctranspath gigapath GPFM phikon uni h_optimus_
 CUDA_VISIBLE_DEVICES=1 bash survival_HANCOCK_Chemotherapy_OS.sh
 ```
 
-## Available Tasks
-
-| Task type | Example task | Prediction target |
-| --- | --- | --- |
-| Survival | `HANCOCK_Chemotherapy_OS` | overall survival |
-| Survival | `HANCOCK_Chemotherapy_DSS` | disease-specific survival |
-| Recurrence | `HANCOCK_Chemotherapy_Recurrence` | recurrence |
-
-Parallel task sets are also provided for Radiotherapy and Surgery cohorts.
-
 ## Available Backbones
 
 ImmunoBench includes features from the following pathology foundation models:
-- `chief`
-- `chief_wsi`
-- `conch`
-- `conch_v1_5`
-- `ctranspath`
-- `gigapath`
-- `gigapath_wsi`
-- `GPFM`
-- `h_optimus_0`
-- `madeleine_wsi`
-- `phikon`
-- `titan_wsi`
-- `uni`
-- `virchow`
-- `virchow2`
+- `chief` `chief_wsi` `conch` `conch_v1_5` `ctranspath` `gigapath` `gigapath_wsi` `GPFM` `h_optimus_0` `madeleine_wsi` `phikon` `titan_wsi` `uni` `virchow` `virchow2`
 
 ## License
 
