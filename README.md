@@ -81,6 +81,14 @@ ImmunoBench covers six task categories. Users should prepare data and run the co
    `train_scripts/subtype_HPA10M_staining_intensity.sh`
    
    `HPA10M_staining_intensity.csv` is not distributed directly in this repository because of file size limits. A download link will be provided here later (for example, Google Drive).
+   
+   **Note**: Due to the large dataset size, you need to create splits using `create_splits_seq` before training.
+   
+   **Example**:
+   ```bash
+   # Run training for HPA10M staining intensity assessment
+   bash train_scripts/subtype_HPA10M_staining_intensity.sh
+   ```
 
 2. Immunohistochemical Biomarker Expression
    
@@ -89,6 +97,12 @@ ImmunoBench covers six task categories. Users should prepare data and run the co
    `dataset_csv/GATA3_pancancer_subtyping.csv`
    
    `train_scripts/subtype_GATA3_pancancer.sh`
+   
+   **Example**:
+   ```bash
+   # Run training for GATA3 biomarker expression prediction
+   bash train_scripts/subtype_GATA3_pancancer.sh
+   ```
 
 3. Disease Diagnosis and Grading
    
