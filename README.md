@@ -70,7 +70,7 @@ Examples:
 
 ## Task Categories
 
-ImmunoBench covers six task categories. Users should prepare data and run the corresponding scripts step by step rather than relying on a single quickstart workflow.
+ImmunoBench covers six task categories. Users should prepare data and run the corresponding scripts step by step.
 
 1. Immunohistochemical Staining Assessment
    `HPA10M_staining_intensity`
