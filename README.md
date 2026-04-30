@@ -68,90 +68,44 @@ Examples:
 - `HANCOCK_Chemotherapy_OS_survival_HE.csv` -> `HE_Only/` -> `survival_HANCOCK_Chemotherapy_OS_HE.sh`
 - `HANCOCK_Chemotherapy_OS_survival_IHC.csv` -> `IHCs_Only/` -> `survival_HANCOCK_Chemotherapy_OS_IHC.sh`
 
-## Quick Example
+## Task Categories
 
-The minimal workflow is:
-1. Download features for one task
-2. Replace the old feature prefix in `dataset_csv/`
-3. Run the matching training script
+ImmunoBench covers six task categories. Users should prepare data and run the corresponding scripts step by step rather than relying on a single quickstart workflow.
 
-### 1. Download one task
+1. Immunohistochemical Staining Assessment
+   `HPA10M_staining_intensity`
+   `dataset_csv/HPA10M_staining_intensity.csv`
+   `train_scripts/subtype_HPA10M_staining_intensity.sh`
+   `HPA10M_staining_intensity.csv` is not distributed directly in this repository because of file size limits. A download link will be provided here later (for example, Google Drive).
+2. Immunohistochemical Biomarker Expression
+   `GATA3_pancancer`
+   `dataset_csv/GATA3_pancancer_subtyping.csv`
+   `train_scripts/subtype_GATA3_pancancer.sh`
+3. Disease Diagnosis and Grading
+   `HANCOCK_grading`
+   `dataset_csv/HANCOCK_grading_subtyping.csv`
+   `dataset_csv/HANCOCK_grading_subtyping_HE.csv`
+   `dataset_csv/HANCOCK_grading_subtyping_IHC.csv`
+   `train_scripts/subtype_HANCOCK_grading.sh`
+   `train_scripts/subtype_HANCOCK_grading_HE.sh`
+   `train_scripts/subtype_HANCOCK_grading_IHC.sh`
+4. Disease Progression and Prognosis
+   `DLBCL_Morph`
+   `dataset_csv/DLBCL_Morph_survival.csv`
+   `train_scripts/survival_DLBCL_Morph.sh`
+5. Therapeutic Response and Decision-Making
+   `HANCOCK_Chemotherapy_Recurrence`
+   `dataset_csv/HANCOCK_Chemotherapy_Recurrence_subtyping.csv`
+   `dataset_csv/HANCOCK_Chemotherapy_Recurrence_subtyping_HE.csv`
+   `dataset_csv/HANCOCK_Chemotherapy_Recurrence_subtyping_IHC.csv`
+   `train_scripts/subtype_HANCOCK_Chemotherapy_Recurrence.sh`
+   `train_scripts/subtype_HANCOCK_Chemotherapy_Recurrence_HE.sh`
+   `train_scripts/subtype_HANCOCK_Chemotherapy_Recurrence_IHC.sh`
+6. Tissue and Tumor Microenvironment Classification
+   `HNSCC_mIF_mIHC_CD8`
+   `train_scripts/patch_HNSCC_mIF_mIHC_CD8.sh`
 
-Using the HuggingFace Python API:
-
-```python
-from huggingface_hub import snapshot_download
-
-snapshot_download(
-    repo_id="AI4Pathology/ImmunoBench-image-features",
-    repo_type="dataset",
-    local_dir="./features",
-    allow_patterns="HANCOCK_Chemotherapy_OS/**"
-)
-```
-
-Or use the helper script:
-
-```bash
-python download_features.py \
-  --task HANCOCK_Chemotherapy_OS \
-  --output_dir ./features
-```
-
-### 2. Replace the old feature prefix in `dataset_csv/`
-
-After downloading, edit the `dir` column in `dataset_csv/*.csv` so that the old absolute prefix points to the local `features/` directory.
-
-For example, replace:
-
-```text
-/tmp/hceph_2_8703576/yanfang/IHC_Benchmarks/data/features_concat_IHCs_only/HANCOCK_Chemotherapy_OS
-```
-
-with:
-
-```text
-features/HANCOCK_Chemotherapy_OS/IHCs_Only
-```
-
-and similarly:
-- `features/HANCOCK_Chemotherapy_OS/Multi_Stain`
-- `features/HANCOCK_Chemotherapy_OS/HE_Only`
-
-### 3. Run training
-
-```bash
-cd train_scripts
-
-bash survival_HANCOCK_Chemotherapy_OS.sh
-# or
-bash survival_HANCOCK_Chemotherapy_OS_HE.sh
-# or
-bash survival_HANCOCK_Chemotherapy_OS_IHC.sh
-```
-
-Results are written under `results/experiments/train/splits712/`, and logs are written under `logs/`.
-
-## More Download Options
-
-You can download a specific modality:
-
-```bash
-python download_features.py \
-  --task HANCOCK_Chemotherapy_OS \
-  --modality Multi_Stain \
-  --output_dir ./features
-```
-
-You can also download selected backbones only:
-
-```bash
-python download_features.py \
-  --task HANCOCK_Chemotherapy_OS \
-  --modality Multi_Stain \
-  --models virchow2 uni \
-  --output_dir ./features
-```
+For tasks 1 to 5, results are written under `results/experiments/train/splits712/`. For task 6, results are written under `results/experiments/train/patch/`. Logs are written under `logs/`.
 
 ## Training Notes
 
